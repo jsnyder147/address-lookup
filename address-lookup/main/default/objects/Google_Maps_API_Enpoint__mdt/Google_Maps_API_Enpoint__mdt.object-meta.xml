@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Google Maps API Endpoints used for Address Lookup</description>
+    <label>Google Maps API Enpoint</label>
+    <pluralLabel>Google Maps API Enpoints</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

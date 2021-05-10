@@ -1,0 +1,29 @@
+<template>
+    <lightning-layout class="compound-address-container">
+        <lightning-layout-item size="12">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="12" class="label">
+                    <legend class="slds-form-element__label slds-form-element__legend">Mailing Address</legend>
+                </lightning-layout-item>
+                <lightning-layout-item size="12">
+                    <c-address-lookup onaddressselected={handleUpdateAddress}></c-address-lookup>
+                </lightning-layout-item>
+                <lightning-layout-item size="12">
+                    <lightning-textarea data-field="mailingStreet" label="Mailing Street" value={address.street} onchange={handleChange}></lightning-textarea>
+                </lightning-layout-item>
+                <lightning-layout-item size="8">
+                    <lightning-input data-field="mailingCity" type="text" label="Mailing City" value={address.city} onchange={handleChange}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" class="space">
+                    <lightning-input data-field="mailingState" type="text" label="Mailing State/Province" value={address.state} onchange={handleChange}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="8">
+                    <lightning-input data-field="mailingPostalCode" type="text" label="Mailing Zip/Postal Code" value={address.postalCode} onchange={handleChange}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" class="space">
+                    <lightning-input data-field="mailingCountry" type="text" label="Mailing Country" value={address.country} onchange={handleChange}></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

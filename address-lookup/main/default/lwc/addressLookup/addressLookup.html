@@ -1,0 +1,54 @@
+<template>
+    <div class="address-lookup-container">
+        <!-- INPUT -->  
+        <div class="slds-form-element__control">
+            <div id="lookup-pill">
+                <div id="lookupField" style="width: 100%;" onkeyup={keyPressController}>
+                    <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left-right">
+                        <!-- SEARCH ICON -->
+                        <div class="search-icon">
+                            <svg focusable="false" data-key="search" aria-hidden="true" viewBox="0 0 52 52" class="slds-icon slds-icon-text-default slds-icon_x-small">
+                                <g>
+                                    <path d="M49.598 45.298l-13.4-13.3c2.7-3.8 4.1-8.6 3.4-13.7-1.2-8.6-8.2-15.4-16.9-16.2-11.8-1.2-21.8 8.8-20.6 20.7.8 8.6 7.6 15.7 16.2 16.9 5.1.7 9.9-.7 13.7-3.4l13.3 13.3c.6.6 1.5.6 2.1 0l2.1-2.1c.6-.6.6-1.6.1-2.2zm-41.6-24.4c0-7.1 5.8-12.9 12.9-12.9 7.1 0 12.9 5.8 12.9 12.9 0 7.1-5.8 12.9-12.9 12.9-7.1 0-12.9-5.7-12.9-12.9z" fill-rule="evenodd"></path>
+                                </g>
+                            </svg>
+                        </div>
+                        <!-- INPUT -->
+                        <input title={prompt} data-id="address-input" type="text" placeholder={prompt} class="slds-input search-input" onblur={handleBlur} onclick={handleInputClick} onkeyup={handleSearch}/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SUGGESTIONS -->
+        <div data-id="search-results" class="search-results-container">
+            <template if:true={predictions}>
+                <template for:each={predictions} for:item="prediction">
+                    <!-- RESULTS -->
+                    <div data-id={prediction.key} class="search-result-item" key={prediction.key} onmouseover={handleResultHover} onmousedown={handleResultClick}>
+                        <span class="result-icon">
+                            <svg focusable="false" data-key="checkin" aria-hidden="true" viewBox="0 0 52 52" class="slds-icon slds-icon-text-default slds-icon_small">
+                                <g>
+                                    <path d="M26 2C15.5 2 7 10.5 7 21.1c0 13.2 13.6 25.3 17.8 28.5.7.6 1.7.6 2.5 0C31.5 46.3 45 34.3 45 21.1 45 10.5 36.5 2 26 2zm0 27c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"></path>
+                                </g>
+                            </svg>
+                        </span>
+                        <span class="result">
+                            <span class="result-line-one-container">
+                                <div data-key={prediction.key} class="result-line-one"></div>
+                            </span>
+                            <span class="result-line-two-container">
+                                <span class="result-line-two">
+                                    {prediction.secondaryText}
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                </template>
+            </template>
+            <!-- GOOGLE ICON -->
+            <div class="google-container">
+                <img src="/projRes/ui-force-components/img/powered_by_google.png" alt="powered by Google" title="powered by Google" class="google-image">
+            </div>
+        </div>
+    </div>
+</template>

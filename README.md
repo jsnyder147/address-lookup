@@ -1,18 +1,20 @@
-# Salesforce DX Project: Next Steps
+# Custom Google Maps Address Lookup LWC
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+This component will bring the native Address Lookup functionality found on Standard Address fields to Lightning Communities, as well as any other custom address implementations.
 
-## How Do You Plan to Deploy Your Changes?
+## Usage
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+- Set up the Google_Maps_API_Configuration.Google_Maps_Configuration Custom Metadata Record with your key from Google Maps API
+- Verify that the Google Maps API Remote Site Setting is in place for callouts to the Google Maps API
+- Add the addressLookup component to your LWC or Aura Component:
+    - <c-address-lookup onaddressselected={handleAddressSelected}>
+    - The component has one event that will need to be handled, addressselected as shown above.
+    - The object returned can be accessed in your handler by referencing event.detail.address
+    - Fields include: streetNumber, route, street, city, state, country, postalCode, postalCodeSuffix
+- Use the exampleImplementation LWC for a refernce on how to setup the component.
 
-## Configure Your Salesforce DX Project
+## Considerations
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+- This unmanaged package will work properly in any org, however if the intent is to use this in a managed package, some changes should be made.
+- Managed Packaged Security Review will flag the use of Cusotm Metadata Types for storage of Tokens/Keys.
+- In order to pass the Security Review, the Custom Metadata Types should be converted to a Named Credential, and the logic in the AddressLookupController Apex Class should be updated to reference the Named Credential for the callouts instead of the Custom Metadata.

@@ -1,0 +1,13 @@
+.compound-address-container {
+    padding: 0 var(--lwc-spacingXxSmall,0.25rem);
+    position:relative;
+}
+.edited {
+    background-color: var(--lwc-colorBackgroundHighlight);
+}
+.label {
+    padding-bottom: 1rem;
+}
+.space {
+    padding-left: var(--lwc-spacingXSmall,0.5rem);
+}
